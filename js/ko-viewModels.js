@@ -133,7 +133,8 @@ function ScriptListViewModel(data) {
 	};
 	LoadData(self,data.get());
 	self.save=function(){
-		self.out.getJSONForExport();
+   		var a={files:self.files(),self.scripts() };
+		self.out.JSON(ko.toJSON(a));
 		data.update(self.out.JSON());
 	};
 }

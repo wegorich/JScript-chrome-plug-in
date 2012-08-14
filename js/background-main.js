@@ -5,7 +5,7 @@
 
 	  if( ! localStorage['links'])
 	  { 
-		localStorage['links']= '{"files":[{"name":"jquery","link":"js/jquery-1.7.2.min.js"},{"name":"knockout","link":"js/knockout-2.1.0.js"}],"scripts":[{"name":"onliner for fun","link":"http://www.onliner.by/","action":"$(\'.top-search-input\').val(\'apple\');","fileItems":[{"name":"jquery","link":"js/jquery-1.7.2.min.js"}]}]}';
+		localStorage['links']= '{"files":[{"name":"jquery","link":"js/jquery-1.7.2.min.js"},{"name":"knockout","link":"js/knockout-2.1.0.js"}],"scripts":[{"name":"Alert","link":"http","action":"alert(\"Hello I`m custom script\");","isEnable":true,"isEdited":false,"fileItems":[{"name":"jquery","link":"js/jquery-1.7.2.min.js"}]}]}';
 	  }
 	  data = JSON.parse(localStorage['links']);
 

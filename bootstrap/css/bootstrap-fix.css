@@ -1,0 +1,49 @@
+.table th, .table td
+{
+    vertical-align: middle;
+}
+td:first-child, td:first-child + td
+{
+    color: #BEBEC5;
+    width: 20px;
+    text-align: center;
+}
+td:last-child
+{
+    width: 140px;
+}
+textarea, input[type='text']
+{
+    width: 90%;
+}
+.half-size
+{
+    width: 45%;
+    text-align: left;
+    float: left;
+}
+/* Строки красные */
+.S
+{
+    color: red;
+}
+/* Юзер-функции синие */
+.func
+{
+    color: blue;
+}
+/* Комменты оранжевые */
+.C
+{
+    color: orange;
+}
+/* Ключевые слова полужирные */
+.kwrd
+{
+    font-weight: bold;
+}
+/*Серые регвыражения */
+.R
+{
+    color: gray;
+}

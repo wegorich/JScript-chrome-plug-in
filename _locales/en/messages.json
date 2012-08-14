@@ -1,0 +1,31 @@
+﻿{
+  "extName": {
+    "message": "JScripter"
+  },
+  "extDescr": {
+    "message": "Starts your JS scripts on any page"
+  },
+  "language": {
+    "message": "Language"
+  },
+  "save":{"message": "Save"},
+  "editor_nav":{"message": "Scripts editor"},
+  "export_nav":{"message": "Export/Import"},
+  "add_remove":{"message": "Add/Remove link to javascript file"},
+  "name":{"message": "Think of a name..."},
+  "path":{"message": "Write the path..."},
+  "add":{"message": "Add new"},
+  "files":{"message": "Available files"},
+  "delete":{"message": "Delete"},
+  "add_script":{"message": "Add script"},
+  "available_scripts":{"message": "Available scripts"},
+  "back":{"message": "Back"},
+  "edit":{"message": "Edit"},
+  "export_as_JSON":{"message": "Export as JSON"},
+  "import_as_JSON":{"message": "Import as JSON"},
+  "overwrite_all_data":{"message": "Overwrite local data"},
+  "upload":{"message": "Upload"},
+  "js_code":{"message": "Your code:"},
+   "setting":{"message": "Settings"},
+   "edit":{"message": "Edit"}
+}

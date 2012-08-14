@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-fix.css" rel="stylesheet">
+    <link href="bootstrap/css/prettify.css" type="text/css" rel="stylesheet" />
+    <script src="bootstrap/js/prettify.js"></script>
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="js/knockout-2.1.0.js"></script>
+    <script src="js/ko-ViewModels.js"></script>
+    <script src="js/options-main.js"></script>
+</head>
+<body>
+    <div class="container" style="margin-top: 20px;">
+        <div class="tabbable" style="margin-bottom: 18px;">
+            <ul class="nav nav-tabs">
+                <li class="active"><a id="local_editor_nav" data-toggle="tab" href="#tab1">Script editor</a></li>
+                <li><a id="local_export_nav" data-toggle="tab" href="#tab2">Import/Export</a></li>
+            </ul>
+            <div class="control-group">
+                <button class="btn btn-large btn-success save" data-bind="click: save">
+                    Save</button>
+            </div>
+            <div class="tab-content">
+                <div id="tab1" class="tab-pane active">
+                    <div class="accordion" id="accordion">
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" id="local_add_remove" data-toggle="collapse" data-parent="#accordion"
+                                    href="#collapseOne">Add/Remove script files URL </a>
+                            </div>
+                            <div id="collapseOne" class="accordion-body collapse" style="height: 0;">
+                                <div class="accordion-inner">
+                                    <form class="form-inline" data-bind="submit: file.add">
+                                    <div class="control-group">
+                                        <input class="name" type="text" data-bind="value: file.nameText" placeholder="Name for file..."></input>
+                                    </div>
+                                    <div class="control-group">
+                                        <input class="path" type="text" data-bind="value: file.linkText" placeholder="Path local or URL..."></input>
+                                    </div>
+                                    <div class="control-group">
+                                        <button class="btn btn-large btn-primary add" type="submit">
+                                            <i class="icon-ok icon-white"></i>Add new</button>
+                                    </div>
+                                    </form>
+                                    <div class="form-horizontal" data-bind=" visible: files().length > 0">
+                                        <div class="control-group">
+                                            <label class="control-label files" for="multiSelect">
+                                                Multicon-select</label>
+                                            <div class="controls">
+                                                <select multiple="multiple" id="multiSelect" data-bind="options: files,value:files.selectedItem,selectedOptions:files.selectedItems,optionsText: function(item) { return item.name;}">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <a class="btn btn-danger delete" data-bind="click: file.remove" href="#"><i class="icon-trash icon-white">
+                                                </i>Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" id="local_add_script" data-parent="#accordion"
+                                    href="#collapseTwo">Add script </a>
+                            </div>
+                            <div id="collapseTwo" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <form class="form-horizontal" data-bind="submit: script.add">
+                                    <div class="control-group">
+                                        <input class="name" data-bind="value: script.nameText" placeholder="Name this pattern some how..."
+                                            type="text"></input>
+                                    </div>
+                                    <div class="control-group">
+                                        <input class="path" data-bind="value: script.linkText" placeholder="Type URL, or regex when the script "
+                                            type="text"></input>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label files" for="textarea">
+                                            JS files/frameworks:</label>
+                                        <div class="controls">
+                                            <select multiple="multiple" id="Select1" data-bind="options: files,value:files.selectedItem,selectedOptions:files.selectedItems,optionsText: function(item) { return item.name;}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" id="local_js_code" for="textarea">
+                                            Js/Jquery code:</label>
+                                        <div class="controls">
+                                            <textarea id="textarea" data-bind="value: script.actionText" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <button class="btn btn-large btn-primary add" type="submit">
+                                                <i class="icon-ok icon-white "></i>Add new</button>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" id="local_available_scripts" data-parent="#accordion"
+                                    href="#collapseThree">Scripts</a>
+                            </div>
+                            <div id="collapseThree" class="accordion-body in collapse" style="height: auto;">
+                                <div class="accordion-inner">
+                                    <table class="table">
+                                        <tbody data-bind="foreach: scripts, visible: scripts().length > 0">
+                                            <tr>
+                                                <td>
+                                                    <span data-bind="text: $index"></span>
+                                                </td>
+                                                <td>
+                                                    <input data-bind="checked: isEnable" type="checkbox" />
+                                                </td>
+                                                <td>
+                                                    <div data-bind="if: !isEdited()">
+                                                        <div class="half-size">
+                                                            <span data-bind="text: name">
+                                                        </div>
+                                                        <div class="half-size">
+                                                            <a data-bind="text: link"></a>
+                                                        </div>
+                                                    </div>
+                                                    <div data-bind="if: isEdited">
+                                                        <div class="control-group">
+                                                            <input class="name" data-bind="value: name" placeholder="Name this pattern some how..."
+                                                                type="text"></input>
+                                                        </div>
+                                                        <div class="control-group">
+                                                            <input class="path" data-bind="value: link" placeholder="Type URL, or regex when the script..."
+                                                                type="text">
+                                                        </div>
+                                                        <div class="control-group">
+                                                            <select multiple="multiple" data-bind="options: $parent.files,selectedOptions:fileItems,optionsText: function(item) { return item.name;}">
+                                                            </select>
+                                                        </div>
+                                                        <div class="control-group">
+                                                            <textarea data-bind="value: action" rows="3"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="btn-group" data-bind="if: !isEdited()">
+                                                        <a class="btn btn-warning edit" href="#" data-bind="click: $parent.script.edit"><i class=" icon-pencil icon-white">
+                                                        </i>Edit</a> <a class="btn btn-danger delete" data-bind="click: $parent.script.remove"
+                                                            href="#"><i class="icon-trash icon-white"></i>Delete</a>
+                                                    </div>
+                                                    <div class="btn-group" data-bind="if: isEdited">
+                                                        <a class="btn back" data-bind="click: $parent.script.edit" href="#"><i class="icon-remove">
+                                                        </i>Back</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab2" class="tab-pane">
+                    <div class="accordion" id="accordion2">
+                        <div class="accordion-group">
+                            <div class="accordion-heading" data-bind="click:out.getJSONForExport">
+                                <a class="accordion-toggle" id="local_export_as_JSON" data-toggle="collapse" data-parent="#accordion2"
+                                    href="#exportCollapseOne">Export as JSON </a>
+                            </div>
+                            <div id="exportCollapseOne" class="accordion-body collapse" style="height: 0;">
+                                <div class="accordion-inner">
+                                    <pre class="prettyprint linenums" data-bind="text:out.JSON"></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" id="local_import_as_JSON" data-toggle="collapse" data-parent="#accordion2"
+                                    href="#exportCollapseTwo">Import JSON data </a>
+                            </div>
+                            <div id="exportCollapseTwo" class="accordion-body in collapse" style="height: auto;">
+                                <div class="accordion-inner">
+                                    <div class="control-group">
+                                        <textarea rows="3" data-bind="value:to.JSON"></textarea>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="checkbox">
+                                            <input type="checkbox" name="optionsCheckboxList1" data-bind="checked:to.isOverrided">
+                                            <span id="local_overwrite_all_data">Overwrite data</span>
+                                        </label>
+                                    </div>
+                                    <div class="control-group">
+                                        <button class="btn btn-large btn-primary upload" data-bind="click:to.updateObjects">
+                                            <i class="icon-ok icon-white"></i>Upload</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

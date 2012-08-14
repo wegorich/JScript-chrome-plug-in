@@ -1,0 +1,31 @@
+﻿{
+  "extName": {
+    "message": "JScripter"
+  },
+  "extDescr": {
+    "message": "Запускает ваши JS скрипты на любых страницах"
+  },
+  "language": {
+    "message": "Язык"
+  },
+  "save":{"message": "Сохранить"},
+  "editor_nav":{"message": "Редактор скриптов"},
+  "export_nav":{"message": "Экспортировать/Импортировать"},
+  "add_remove":{"message": "Добавить/Удалить ссылку на файл скриптов"},
+  "name":{"message": "Придумайте имя..."},
+  "path":{"message": "Напишите путь..."},
+  "add":{"message": "Добавить"},
+  "files":{"message": "Доступные файлы"},
+  "delete":{"message": "Удал."},
+  "add_script":{"message": "Добавить скрипт"},
+  "available_scripts":{"message": "Доступные скрипты"},
+  "back":{"message": "Назад"},
+  "edit":{"message": "Редактировать"},
+  "export_as_JSON":{"message": "Экспортировать как JSON"},
+  "import_as_JSON":{"message": "Импортировать как JSON"},
+  "overwrite_all_data":{"message": "Перезаписать все данные"},
+  "upload":{"message": "Загрузить"},
+  "js_code":{"message": "Ваш код:"},
+  "setting":{"message": "Настройки"},
+     "edit":{"message": "Править"}
+}
